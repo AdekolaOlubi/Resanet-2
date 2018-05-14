@@ -1,0 +1,48 @@
+
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<table class ="table">
+				<thead>
+					<tr>
+						<th scope="col">Jour Féries </th>
+					</tr>
+				</thead>
+		</table>
+		
+		<table class = "table">
+			<thead>
+				<tr>
+					<th scope="col"> date Férie </th>
+					<th scope="col"> Libelle </th>
+				</tr>
+			
+			</thead>
+			<tbody>
+					{% for i in date %}
+						<tr>
+							<td>{{ i[ 'date' ] }}</td>
+							<td>{{ i[ 'libelle' ] }}</td>
+							<form action="/gestionnaire/reservation/timer/{{ i[ 'date' ] }}" method="Post">
+								<td><input type="submit" class="btn btn-danger" value="supprimer"></td>
+							</form>
+						</tr>
+					{% endfor %}
+			</tbody>
+		
+		</table>
+	</div>
+</div>
+
+
+{% include "vuePied.html" %}

@@ -1,0 +1,81 @@
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Historique Compte</th>
+				</tr>
+			</thead>
+			
+				<tbody>
+					<tr>
+						<td> Matricule </td>
+						<td> {{ m }} </td>
+						<td></td>
+						<td></td>
+						
+						
+					</tr>
+					<tr>
+						<td> Nom </td>
+						<td> {{ n }} </td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td> Prénom </td>
+						<td> {{ p }} </td>
+						<td></td><td></td>
+						
+					</tr>
+					<tr>
+						<td> Service </td>
+						<td> {{ s }} </td>
+						<td></td><td></td>
+						
+					</tr>
+				</tbody>
+			</table>
+			<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Historique de Reservation</th>
+				</tr>
+			</thead>
+			
+				<tbody>		
+					<tr>
+						{% for i in range(0,history|length) %}
+							{% if( i % 4 == 0) %}
+								</tr><tr>
+								<td>{{ history[i] }}</td>
+							{% else %}
+								<td>{{ history[i] }}</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+					<tr>
+						<form action="/gestionnaire/liste/avecCarte">
+							<td><input type="submit" class="btn btn-danger" value="Return"></td>	
+						</form>
+						
+							
+					</tr>
+					
+				</tbody>
+			</table>	
+	</div>
+</div>
+
+
+

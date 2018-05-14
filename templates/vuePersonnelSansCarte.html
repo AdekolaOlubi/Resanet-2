@@ -1,0 +1,45 @@
+{% include "vueEntete.html" %}
+
+{% include "vueEnteteGestionnaire.html" %}
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Matricule</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Service</th>
+					</tr>
+			</thead>
+			{% for unpersonnel in personnelsans %}
+				<tbody>
+					<tr>
+						<td> {{ unpersonnel[ 'matricule' ]}} </td>
+						<td> {{ unpersonnel[ 'nom' ]}} </td>
+						<td> {{ unpersonnel[ 'prenom' ]}} </td>
+						<td> {{ unpersonnel[ 'nomService' ]}} </td>
+						<form action="/gestionnaire/compte/creerCompte/{{ unpersonnel[ 'matricule' ]}}/{{ unpersonnel[ 'nom' ]}}/{{ unpersonnel[ 'prenom' ]}}/{{ unpersonnel[ 'nomService' ]}}" method="POST">
+							<td><input type="submit" class="btn btn-success" value="Créer Compte"></td>	
+						</form>				
+					</tr>
+				</tbody>
+								
+			{% endfor %}
+		</table>	
+	</div>
+</div>
+
+	
+
+{% include "vuePied.html" %}

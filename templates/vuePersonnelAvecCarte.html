@@ -1,0 +1,145 @@
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+
+<script>
+	function myFunction() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[3];
+		if (td) {
+		  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		  } else {
+			tr[i].style.display = "none";
+		  }
+		}       
+	  }
+	}
+</script>
+
+<script type="text/javascript"> 
+      $(document).ready( function() {
+        $('#text1').delay(5000).fadeOut();
+      });
+    </script>
+	
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+			<div class= "col-md-5" id="text1">
+				{% if creer == True  %}
+					<p class="alert alert-success" role="alert"> le COMPTE de {{ nom }} {{ prenom }} a été créer.</p>
+				{% endif %}
+				{% if mdpinit == True  %}
+					<p class="alert alert-success" role="alert"> le MOT DE PASSE de {{ nom }} {{ prenom }} a été Ré-Initialiser.</p>
+				{% endif %}
+			</div>
+	</div>
+	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">N° Carte</th>
+					<th scope="col">Solde</th>
+					<th scope="col">Matricule</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Service</th>
+					</tr>
+			</thead>
+			{% for unpersonnel in personnel %}
+				<tbody>
+					<tr>
+						<td> {{ unpersonnel['numeroCarte'] }} </td>
+						<td> {{ unpersonnel[ 'solde' ]}} </td>
+						<td> {{ unpersonnel[ 'matricule' ]}} </td>
+						<td> {{ unpersonnel[ 'nom' ]}} </td>
+						<td> {{ unpersonnel[ 'prenom' ]}} </td>
+						<td> {{ unpersonnel[ 'nomService' ]}} </td>
+						
+						{% if unpersonnel['activee']==1 %}
+							<form action="/gestionnaire/compte/crediter/{{ unpersonnel['numeroCarte'] }}/{{ unpersonnel['nom'] }}/{{ unpersonnel['prenom'] }}/{{ unpersonnel[ 'nomService' ] }}" method="POST">
+								<td><button type="submit" class="btn btn-info">Créditer</button></td>
+							</form>
+							
+							<form action="/gestionnaire/compte/blocquer/{{ unpersonnel['numeroCarte'] }}" method="POST">
+								<td><input type="submit" class="btn btn-danger" value="Bloquer"></td>
+							</form>
+							<form action="/gestionnaire/compte/initmdp/{{ unpersonnel['numeroCarte'] }}/{{ unpersonnel['nom'] }}/{{ unpersonnel['prenom'] }} " method="POST">
+								<td><input type="submit" class="btn btn-primary" value="Init. MDP"></td>
+							</form>
+							
+							<form action="/gestionnaire/compte/history/{{ unpersonnel['numeroCarte'] }}/{{ unpersonnel['nom'] }}/{{ unpersonnel['prenom'] }}/{{ unpersonnel[ 'nomService' ] }}" method="POST">
+								<td><button type="submit" class="btn btn-warning">Historique</button></td>
+							</form>
+						{% else %}
+							<td></td>
+							<form action="/gestionnaire/compte/activer/{{ unpersonnel['numeroCarte'] }}" method="POST">
+								<td><input type="submit" class="btn btn-success" value="Activer"></td>
+							</form>
+							<td></td>
+							<form action="/gestionnaire/compte/history/{{ unpersonnel['numeroCarte'] }}/{{ unpersonnel['nom'] }}/{{ unpersonnel['prenom'] }}/{{ unpersonnel[ 'nomService' ] }}" method="POST">
+								<td><button type="submit" class="btn btn-warning">Historique</button></td>
+							</form>
+						{% endif %}
+							
+					</tr>
+				</tbody>
+			{% endfor %}
+		</table>	
+	</div>
+</div>
+
+
+
+{% include "vuePied.html" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

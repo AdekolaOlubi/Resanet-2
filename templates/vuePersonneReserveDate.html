@@ -1,0 +1,55 @@
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<table class ="table">
+			<thead>
+				<th scope="col">Personnage Reservé à {{ date }}</th>
+			</thead>
+		</table>
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Matricule</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Service</th>
+					
+				</tr>
+			</thead>
+			
+				<tbody>
+					
+						{% for unperso in perso %}
+						<tr>
+							<td>{{ unperso['numeroCarte']}}</td>
+							<td>{{ unperso['nom']}}</td>
+							<td>{{ unperso['prenom']}}</td>
+							<td>{{ unperso['nomService']}}</td>
+						</tr>
+						{% endfor %}
+						
+					<tr>
+					<form action="/gestionnaire/liste/avecCarte">
+							<td><input type="submit" class="btn btn-danger" value="Return"></td>	
+						</form>
+					
+					</tr>
+					
+				</tbody>
+			</table>	
+	</div>
+</div>
+
+
+{% include "vuePied.html" %}

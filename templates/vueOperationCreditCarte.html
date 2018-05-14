@@ -1,0 +1,66 @@
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Créditer Compte</th>
+				</tr>
+			</thead>
+			
+				<tbody>
+					<tr>
+						<td> Matricule </td>
+						<td> {{ m }} </td>
+						<td></td>
+						
+						
+					</tr>
+					<tr>
+						<td> Nom </td>
+						<td> {{ n }} </td>
+						<td></td>
+						
+					</tr>
+					<tr>
+						<td> Prénom </td>
+						<td> {{ p }} </td>
+						<td></td>
+						
+					</tr>
+					<tr>
+						<td> Service </td>
+						<td> {{ s }} </td>
+						<td></td>
+						
+					</tr>
+					<form action="/gestionnaire/compte/solde/{{ m }}/{{ n }}/{{ p }}" method = "post">
+					<tr>
+						<td> Solde Crediter </td>
+						<td><input id="solde" type="text" Name="solde" > </td>
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-success" value="Crediter"></td>	
+					</form>
+							<td></td>	
+						
+						<form action="/gestionnaire/liste/avecCarte">
+							<td><input type="submit" class="btn btn-danger" value="Return"></td>	
+						</form>
+						
+							
+					</tr>
+					
+				</tbody>
+			</table>	
+	</div>
+</div>

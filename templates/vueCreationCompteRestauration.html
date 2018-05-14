@@ -1,0 +1,77 @@
+{% include "vueEntete.html" %}
+{% include "vueEnteteGestionnaire.html" %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<p class="alert alert-info" role="alert">Nous sommes le {{aujourdhuifr}}</p>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<table class ="table">
+			<thead>
+				<tr>
+					<th scope="col">Créer Compte</th>
+				</tr>
+			</thead>
+			
+				<tbody>
+					<tr>
+						<td> Matricule </td>
+						<td> {{ m }} </td>
+						<td></td>
+						
+						
+					</tr>
+					<tr>
+						<td> Nom </td>
+						<td> {{ n }} </td>
+						<td></td>
+						
+					</tr>
+					<tr>
+						<td> Prénom </td>
+						<td> {{ p }} </td>
+						<td></td>
+						
+					</tr>
+					<tr>
+						<td> Service </td>
+						<td> {{ s }} </td>
+						<td></td>
+						
+					</tr>
+					<form action="/gestionnaire/compte/creer/{{ m }}" method = "post">
+					<tr>
+						<td> Etat </td>
+						<td> Activer <input id="activer" type="radio" Name="etat" value="1" > </td>
+						<td> Blocquer <input id="bloque"type="radio" Name="etat" value="0" checked> </td>
+
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-success" value="creer"></td>	
+					</form>
+							<td></td>	
+						
+						<form action="/gestionnaire/liste/sansCarte">
+							<td><input type="submit" class="btn btn-danger" value="Return"></td>	
+						</form>
+						
+							
+					</tr>
+					
+				</tbody>
+			</table>	
+	</div>
+</div>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("activer").checked;
+    return x
+}
+</script>
+
+{% include "vuePied.html" %}
